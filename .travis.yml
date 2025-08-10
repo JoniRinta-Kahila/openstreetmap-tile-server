@@ -7,14 +7,14 @@ services:
 before_install:
 - echo "Before install"
 before_script:
-- docker pull overv/openstreetmap-tile-server || true
+- docker pull JoniRinta-Kahila/openstreetmap-tile-server || true
 script:
-- docker build --pull --cache-from overv/openstreetmap-tile-server --tag overv/openstreetmap-tile-server .
+- docker build --pull --cache-from JoniRinta-Kahila/openstreetmap-tile-server --tag JoniRinta-Kahila/openstreetmap-tile-server .
 - docker volume create osm-data
-- docker run --rm -v osm-data:/data/database/ overv/openstreetmap-tile-server import
-- docker run --rm -v osm-data:/data/database/ -p 8080:80 -d overv/openstreetmap-tile-server run
+- docker run --rm -v osm-data:/data/database/ JoniRinta-Kahila/openstreetmap-tile-server import
+- docker run --rm -v osm-data:/data/database/ -p 8080:80 -d JoniRinta-Kahila/openstreetmap-tile-server run
 - sleep 30
-- make DOCKER_IMAGE=overv/openstreetmap-tile-server stop
+- make DOCKER_IMAGE=JoniRinta-Kahila/openstreetmap-tile-server stop
 after_script:
 - docker images
 after_success:
@@ -22,7 +22,7 @@ after_success:
   then
   docker images ;
   echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin ;
-  docker push overv/openstreetmap-tile-server ;
+  docker push JoniRinta-Kahila/openstreetmap-tile-server ;
   fi
 notifications:
   email: true

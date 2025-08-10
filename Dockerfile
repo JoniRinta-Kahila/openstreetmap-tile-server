@@ -37,6 +37,12 @@ RUN mkdir -p /home/renderer/src \
 
 ###########################################################################################################
 
+FROM compiler-common AS compiler-blossom
+RUN git clone --depth 1 https://github.com/JoniRinta-Kahila/blossom.git /home/renderer/src/blossom \
+ && rm -rf /home/renderer/src/blossom/.git
+
+###########################################################################################################
+
 FROM compiler-common AS final
 
 # Based on
@@ -122,6 +128,12 @@ RUN cd /var/www/html/ \
 # Icon
 RUN wget -O /var/www/html/favicon.ico https://www.openstreetmap.org/favicon.ico
 
+# --- Täytä /data/style Blossom-tyylillä valmiiksi ---
+COPY --from=compiler-blossom /home/renderer/src/blossom/ /data/style/
+# Asenna tyylin fontit järjestelmään, jotta Mapnik löytää ne
+COPY --from=compiler-blossom /home/renderer/src/blossom/fonts/ /usr/share/fonts/
+
+
 # Copy update scripts
 COPY openstreetmap-tiles-update-expire.sh /usr/bin/
 RUN chmod +x /usr/bin/openstreetmap-tiles-update-expire.sh \
@@ -158,7 +170,7 @@ URI=/tile/ \n\
 TILEDIR=/var/cache/renderd/tiles \n\
 XML=/home/renderer/src/openstreetmap-carto/mapnik.xml \n\
 HOST=localhost \n\
-TILESIZE=256 \n\
+TILESIZE=512 \n\
 MAXZOOM=20' >> /etc/renderd.conf \
  && sed -i 's,/usr/share/fonts/truetype,/usr/share/fonts,g' /etc/renderd.conf
 

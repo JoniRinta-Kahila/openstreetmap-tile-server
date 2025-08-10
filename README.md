@@ -1,7 +1,7 @@
 # openstreetmap-tile-server
 
-[![Build Status](https://travis-ci.org/Overv/openstreetmap-tile-server.svg?branch=master)](https://travis-ci.org/Overv/openstreetmap-tile-server) [![](https://images.microbadger.com/badges/image/overv/openstreetmap-tile-server.svg)](https://microbadger.com/images/overv/openstreetmap-tile-server "openstreetmap-tile-server")
-[![Docker Image Version (latest semver)](https://img.shields.io/docker/v/overv/openstreetmap-tile-server?label=docker%20image)](https://hub.docker.com/r/overv/openstreetmap-tile-server/tags)
+[![Build Status](https://travis-ci.org/JoniRinta-Kahila/openstreetmap-tile-server.svg?branch=master)](https://travis-ci.org/JoniRinta-Kahila/openstreetmap-tile-server) [![](https://images.microbadger.com/badges/image/JoniRinta-Kahila/openstreetmap-tile-server.svg)](https://microbadger.com/images/JoniRinta-Kahila/openstreetmap-tile-server "openstreetmap-tile-server")
+[![Docker Image Version (latest semver)](https://img.shields.io/docker/v/JoniRinta-Kahila/openstreetmap-tile-server?label=docker%20image)](https://hub.docker.com/r/JoniRinta-Kahila/openstreetmap-tile-server/tags)
 
 This container allows you to easily set up an OpenStreetMap PNG tile server given a `.osm.pbf` file. It is based on the [latest Ubuntu 18.04 LTS guide](https://switch2osm.org/serving-tiles/manually-building-a-tile-server-18-04-lts/) from [switch2osm.org](https://switch2osm.org/) and therefore uses the default OpenStreetMap style.
 
@@ -17,7 +17,7 @@ Next, download an `.osm.pbf` extract from geofabrik.de for the region that you'r
 docker run \
     -v /absolute/path/to/luxembourg.osm.pbf:/data/region.osm.pbf \
     -v osm-data:/data/database/ \
-    overv/openstreetmap-tile-server \
+    JoniRinta-Kahila/openstreetmap-tile-server \
     import
 ```
 
@@ -37,7 +37,7 @@ docker run \
     -v /absolute/path/to/luxembourg.osm.pbf:/data/region.osm.pbf \
     -v /absolute/path/to/luxembourg.poly:/data/region.poly \
     -v osm-data:/data/database/ \
-    overv/openstreetmap-tile-server \
+    JoniRinta-Kahila/openstreetmap-tile-server \
     import
 ```
 
@@ -55,7 +55,7 @@ docker run \
     -e DOWNLOAD_PBF=https://download.geofabrik.de/europe/luxembourg-latest.osm.pbf \
     -e DOWNLOAD_POLY=https://download.geofabrik.de/europe/luxembourg.poly \
     -v osm-data:/data/database/ \
-    overv/openstreetmap-tile-server \
+    JoniRinta-Kahila/openstreetmap-tile-server \
     import
 ```
 
@@ -73,7 +73,7 @@ docker run \
     -e NAME_SQL=test.sql \
     -v /home/user/openstreetmap-carto-modified:/data/style/ \
     -v osm-data:/data/database/ \
-    overv/openstreetmap-tile-server \
+    JoniRinta-Kahila/openstreetmap-tile-server \
     import
 ```
 
@@ -93,7 +93,7 @@ Run the server like this:
 docker run \
     -p 8080:80 \
     -v osm-data:/data/database/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -113,7 +113,7 @@ docker run \
     -p 8080:80 \
     -v osm-data:/data/database/ \
     -v osm-tiles:/data/tiles/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -131,7 +131,7 @@ docker run \
     -e UPDATES=enabled \
     -v osm-data:/data/database/ \
     -v osm-tiles:/data/tiles/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -156,7 +156,7 @@ docker run \
     -e EXPIRY_MAXZOOM=20 \
     -v osm-data:/data/database/ \
     -v osm-tiles:/data/tiles/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -169,7 +169,7 @@ docker run \
     -p 8080:80 \
     -v osm-data:/data/database/ \
     -e ALLOW_CORS=enabled \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -182,7 +182,7 @@ docker run \
     -p 8080:80 \
     -p 5432:5432 \
     -v osm-data:/data/database/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -200,7 +200,7 @@ docker run \
     -p 5432:5432 \
     -e PGPASSWORD=secret \
     -v osm-data:/data/database/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -216,7 +216,7 @@ docker run \
     -p 8080:80 \
     -e THREADS=24 \
     -v osm-data:/data/database/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -228,7 +228,7 @@ docker run \
     -p 8080:80 \
     -e "OSM2PGSQL_EXTRA_ARGS=-C 4096" \
     -v osm-data:/data/database/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -240,7 +240,7 @@ docker run \
     -p 8080:80 \
     -e AUTOVACUUM=off \
     -v osm-data:/data/database/ \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 
@@ -253,7 +253,7 @@ docker run \
     -v /absolute/path/to/luxembourg.osm.pbf:/data/region.osm.pbf \
     -v osm-data:/data/database/ \
     -e "FLAT_NODES=enabled" \
-    overv/openstreetmap-tile-server \
+    JoniRinta-Kahila/openstreetmap-tile-server \
     import
 ```
 
@@ -278,7 +278,7 @@ docker run \
     -p 8080:80 \
     -v osm-data:/data/database/ \
     --shm-size="192m" \
-    -d overv/openstreetmap-tile-server \
+    -d JoniRinta-Kahila/openstreetmap-tile-server \
     run
 ```
 For too high values you may notice excessive CPU load and memory usage. It might be that you will have to experimentally find the best values for yourself.
