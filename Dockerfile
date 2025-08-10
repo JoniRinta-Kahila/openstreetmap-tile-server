@@ -132,8 +132,6 @@ RUN wget -O /var/www/html/favicon.ico https://www.openstreetmap.org/favicon.ico
 COPY --from=compiler-blossom /home/renderer/src/blossom/ /data/style/
 # Asenna tyylin fontit järjestelmään, jotta Mapnik löytää ne
 COPY --from=compiler-blossom /home/renderer/src/blossom/fonts/ /usr/share/fonts/
-# Päivitä fonttien välimuisti
-RUN fc-cache -f
 
 # --- Lisää Carton import-tiedostot ja external-data, jotta osm2pgsql & UPDATES toimivat ---
 COPY --from=compiler-stylesheet /root/openstreetmap-carto/openstreetmap-carto.lua   /data/style/
